@@ -1,0 +1,5 @@
+{
+  "expected_findings": [
+    "Command Injection"
+  ]
+}

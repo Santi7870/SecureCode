@@ -1,0 +1,8 @@
+# Benchmark Testcase: Path Traversal (Python Safe 3)
+import os
+def read_user_file(filename):
+    # SAFE: Restricting filepath inputs using base directory check
+    base_dir = "/var/www/uploads"
+    safe_name = os.path.basename(filename)
+    filepath = os.path.join(base_dir, safe_name)
+    return filepath

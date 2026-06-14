@@ -1,0 +1,4 @@
+function executeScript(script) {
+    // SAFE: Standard JSON parsing
+    return JSON.parse(script);
+}

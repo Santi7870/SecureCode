@@ -1,0 +1,8 @@
+// Benchmark Testcase: Path Traversal (JS Safe 3)
+const path = require("path");
+function readUserFile(filename) {
+    // SAFE: Extracting basename to lock path containment
+    const safeName = path.basename(filename);
+    const filepath = path.join("/var/www/uploads", safeName);
+    return filepath;
+}

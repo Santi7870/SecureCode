@@ -1,0 +1,33 @@
+# Python environments
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Node environments
+node_modules/
+dist/
+
+# SQLite databases
+sqlite.db
+sqlite.db-journal
+
+# Local Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Report outputs (optional, if you want local history private)
+reports/security_report.json
+reports/security_report.md
+reports/security_report_*.json
+reports/security_report_*.md
+reports/repository_report_*.json
+reports/repository_report_*.md
+temp_repos/
+tmp_scans/
+
+# Pytest caches
+.pytest_cache/
+.coverage
+htmlcov/

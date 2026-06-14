@@ -1,0 +1,4 @@
+import requests
+def fetch_data(url):
+    # SAFE: Verifying TLS certificates
+    return requests.get(url, verify=True)

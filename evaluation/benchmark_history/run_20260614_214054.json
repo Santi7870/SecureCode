@@ -1,0 +1,108 @@
+{
+  "timestamp": "2026-06-14T21:40:54.428280Z",
+  "mode": "offline",
+  "dataset_size": 200,
+  "duration_seconds": 34.66,
+  "metrics": {
+    "precision": 0.8447,
+    "recall": 0.87,
+    "f1": 0.8571,
+    "accuracy": 0.855,
+    "false_positive_rate": 0.16,
+    "false_negative_rate": 0.13,
+    "detection_coverage": 0.87
+  },
+  "grounding": {
+    "grounding_success_rate": 0.8505,
+    "citation_coverage": 0.8505
+  },
+  "retrieval": {
+    "average_similarity": 0.6043,
+    "average_chunks": 5.0,
+    "retrieval_success_rate": 1.0,
+    "citation_coverage": 0.8505
+  },
+  "remediation": {
+    "remediation_success_rate": 0.8505,
+    "validation_success_rate": 0.8505,
+    "citation_success_rate": 0.8505
+  },
+  "reliability": {
+    "agent_success_rate": 1.0,
+    "agent_failure_rate": 0.0,
+    "pipeline_completion_rate": 1.0
+  },
+  "categories": [
+    {
+      "category": "SQL Injection",
+      "precision": 0.8182,
+      "recall": 0.9,
+      "f1": 0.8571,
+      "coverage": 0.9
+    },
+    {
+      "category": "Hardcoded Secrets",
+      "precision": 0.8182,
+      "recall": 0.9,
+      "f1": 0.8571,
+      "coverage": 0.9
+    },
+    {
+      "category": "Weak Hashing",
+      "precision": 0.9,
+      "recall": 0.9,
+      "f1": 0.9,
+      "coverage": 0.9
+    },
+    {
+      "category": "Unsafe Eval",
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1": 0.8,
+      "coverage": 0.8
+    },
+    {
+      "category": "Command Injection",
+      "precision": 0.9,
+      "recall": 0.9,
+      "f1": 0.9,
+      "coverage": 0.9
+    },
+    {
+      "category": "Path Traversal",
+      "precision": 0.8889,
+      "recall": 0.8,
+      "f1": 0.8421,
+      "coverage": 0.8
+    },
+    {
+      "category": "Insecure Randomness",
+      "precision": 0.9,
+      "recall": 0.9,
+      "f1": 0.9,
+      "coverage": 0.9
+    },
+    {
+      "category": "Disabled TLS Verification",
+      "precision": 0.8182,
+      "recall": 0.9,
+      "f1": 0.8571,
+      "coverage": 0.9
+    },
+    {
+      "category": "Permissive CORS",
+      "precision": 0.8182,
+      "recall": 0.9,
+      "f1": 0.8571,
+      "coverage": 0.9
+    },
+    {
+      "category": "XSS",
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1": 0.8,
+      "coverage": 0.8
+    }
+  ],
+  "executive_summary": "The SecureCode Reasoning Agent was evaluated against 200 curated benchmark scenarios under 'OFFLINE' mode. Results indicate strong detection reliability with an overall F1-Score of 85% (Precision: 84%, Recall: 87%), and a False Positive Rate of 16%. The hybrid RAG retrieval demonstrated high grounding quality with a 85% grounding success rate and 60% average vector similarity. The platform demonstrates readiness for enterprise-level security analysis workflows."
+}

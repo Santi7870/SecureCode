@@ -1,0 +1,162 @@
+{
+  "repository_name": "BIT-BILLINGAUTOMATIONHUB-BACK-Santi-clean-architecture-backend-4layers",
+  "manifest": {
+    "files": 24,
+    "python": 24,
+    "javascript": 0,
+    "typescript": 0
+  },
+  "profile": {
+    "project_type": "Static Code Script Collection",
+    "languages": [
+      "Python"
+    ],
+    "frameworks": [],
+    "files": 24,
+    "loc": 49,
+    "dependencies": 0
+  },
+  "posture": {
+    "security_score": 100,
+    "risk_level": "LOW",
+    "business_risk": "LOW"
+  },
+  "dependencies": {
+    "total_dependencies": 0,
+    "runtime_dependencies": 0,
+    "development_dependencies": 0,
+    "infrastructure_dependencies": 0,
+    "dependency_complexity": "Low"
+  },
+  "executive_assessment": "Executive Security Assessment: The repository 'BIT-BILLINGAUTOMATIONHUB-BACK-Santi-clean-architecture-backend-4layers' contains 24 files and achieved an outstanding security posture score of 100/100 (LOW RISK). No code vulnerabilities or hardcoded secrets were detected during analysis, representing an excellent risk profile. Continuous scanning within CI/CD pipelines is recommended to maintain this posture.",
+  "roadmap": [
+    "1. Maintain continuous integration security scanning for subsequent code developments.",
+    "2. Conduct regular security training sessions on secure coding guidelines for development teams."
+  ],
+  "findings": [],
+  "telemetry": {
+    "trace_id": "TRACE-E31017",
+    "scan_id": "ddbd488e-d111-4595-90e5-e327f4991e9a",
+    "started_at": "2026-06-14T23:13:34.414929Z",
+    "completed_at": "2026-06-14T23:13:34.652041Z",
+    "duration_ms": 223,
+    "health": {
+      "total_agents": 6,
+      "healthy_agents": 6,
+      "failed_agents": 0,
+      "success_rate": 100,
+      "status": "HEALTHY"
+    },
+    "performance": {
+      "slowest_agent": "ReportAgent",
+      "duration_ms": 174,
+      "pipeline_percentage": 78,
+      "pipeline_insight": "ReportAgent was the slowest node, taking 78% of execution time (174 ms). Standard process optimization recommended."
+    },
+    "tokens": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "embedding_tokens": 0,
+      "total_tokens": 0
+    },
+    "costs": {
+      "gpt_reasoning": 0.0,
+      "embeddings": 0.0,
+      "retrieval": 0.0,
+      "total": 0.0
+    },
+    "retrieval": [],
+    "spans": [
+      {
+        "span_id": "span_repositorydiscoveryagent_9db0",
+        "parent_span_id": "TRACE-E31017",
+        "agent": "RepositoryDiscoveryAgent",
+        "status": "SUCCESS",
+        "started_at": "2026-06-14T23:13:34.415909Z",
+        "finished_at": "2026-06-14T23:13:34.417466Z",
+        "duration_ms": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost": 0.0,
+        "confidence": 95,
+        "retrieval_chunks": 0,
+        "error": null
+      },
+      {
+        "span_id": "span_dependencyintelligenceagent_a0e7",
+        "parent_span_id": "TRACE-E31017",
+        "agent": "DependencyIntelligenceAgent",
+        "status": "SUCCESS",
+        "started_at": "2026-06-14T23:13:34.418459Z",
+        "finished_at": "2026-06-14T23:13:34.419774Z",
+        "duration_ms": 1,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost": 0.0,
+        "confidence": 95,
+        "retrieval_chunks": 0,
+        "error": null
+      },
+      {
+        "span_id": "span_secretscanningagent_380e",
+        "parent_span_id": "TRACE-E31017",
+        "agent": "SecretScanningAgent",
+        "status": "SUCCESS",
+        "started_at": "2026-06-14T23:13:34.420803Z",
+        "finished_at": "2026-06-14T23:13:34.469457Z",
+        "duration_ms": 47,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost": 0.0,
+        "confidence": 98,
+        "retrieval_chunks": 0,
+        "error": null
+      },
+      {
+        "span_id": "span_securityriskagent_5b44",
+        "parent_span_id": "TRACE-E31017",
+        "agent": "SecurityRiskAgent",
+        "status": "SUCCESS",
+        "started_at": "2026-06-14T23:13:34.470454Z",
+        "finished_at": "2026-06-14T23:13:34.471992Z",
+        "duration_ms": 1,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost": 0.0,
+        "confidence": 90,
+        "retrieval_chunks": 0,
+        "error": null
+      },
+      {
+        "span_id": "span_reasoningagent_0b4c",
+        "parent_span_id": "TRACE-E31017",
+        "agent": "ReasoningAgent",
+        "status": "SUCCESS",
+        "started_at": "2026-06-14T23:13:34.472981Z",
+        "finished_at": "2026-06-14T23:13:34.473729Z",
+        "duration_ms": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost": 0.0,
+        "confidence": 90,
+        "retrieval_chunks": 0,
+        "error": null
+      },
+      {
+        "span_id": "span_reportagent_09f3",
+        "parent_span_id": "TRACE-E31017",
+        "agent": "ReportAgent",
+        "status": "SUCCESS",
+        "started_at": "2026-06-14T23:13:34.476120Z",
+        "finished_at": "2026-06-14T23:13:34.650881Z",
+        "duration_ms": 174,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost": 0.0,
+        "confidence": 90,
+        "retrieval_chunks": 0,
+        "error": null
+      }
+    ]
+  }
+}
