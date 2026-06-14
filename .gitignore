@@ -11,6 +11,7 @@ dist/
 # SQLite databases
 sqlite.db
 sqlite.db-journal
+data/vector_store.json
 
 # Local Environment Variables
 .env

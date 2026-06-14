@@ -15,8 +15,6 @@ import sqlite3
 import hashlib
 import random
 
-API_KEY = "AIzaSyD-fakeKeyForHackathonDemo123456"
-
 def get_user(username):
     conn = sqlite3.connect("users.db")
     cursor = conn.cursor()
@@ -39,8 +37,6 @@ def make_token():
 const express = require('express');
 const cors = require('cors');
 const app = express();
-
-const db_password = "SecretPassword123";
 
 // Overly permissive CORS
 app.use(cors({ origin: "*" }));
