@@ -2,8 +2,6 @@ import os
 import shutil
 import zipfile
 import subprocess
-import tempfile
-from pathlib import Path
 
 class RepositoryService:
     """
@@ -127,7 +125,7 @@ class RepositoryService:
         try:
             # Depth 1 clone with longpaths enabled and a timeout of 90 seconds to prevent hanging
             cmd = ["git", "-c", "core.longpaths=true", "clone", git_url, dest_dir, "--depth", "1", "--quiet"]
-            result = subprocess.run(cmd, capture_output=True, text=True, check=True, timeout=90)
+            subprocess.run(cmd, capture_output=True, text=True, check=True, timeout=90)
             
             # Remove .git folder to avoid scanning git internals or treating it as live git
             git_folder = os.path.join(dest_dir, ".git")
@@ -143,11 +141,31 @@ class RepositoryService:
             if os.path.exists(dest_dir):
                 shutil.rmtree(dest_dir, ignore_errors=True)
             stderr_msg = e.stderr.strip() if e.stderr else "No error output."
-            raise ValueError(f"Failed to clone repository from URL: {git_url}. Git error: {stderr_msg}")
+            raise ValueError(self._build_clone_error(git_url, stderr_msg))
         except Exception as e:
             if os.path.exists(dest_dir):
                 shutil.rmtree(dest_dir, ignore_errors=True)
             raise ValueError(f"Failed to clone repository from URL: {git_url}. Details: {str(e)}")
+
+    def _build_clone_error(self, git_url: str, stderr_msg: str) -> str:
+        stderr_lower = stderr_msg.lower()
+        auth_markers = [
+            "could not read username",
+            "authentication failed",
+            "repository not found",
+            "support for password authentication was removed",
+            "fatal: unable to access",
+        ]
+
+        if any(marker in stderr_lower for marker in auth_markers):
+            return (
+                f"Failed to clone repository from URL: {git_url}. "
+                "This usually means the repository is private or requires GitHub authentication. "
+                "Local scans may still work if your machine is already logged into GitHub, but the deployed backend cannot use your local credentials. "
+                "Use a public repository URL or upload a ZIP archive instead."
+            )
+
+        return f"Failed to clone repository from URL: {git_url}. Git error: {stderr_msg}"
 
     def cleanup(self, path: str):
         """

@@ -351,6 +351,9 @@ export const App: React.FC = () => {
                             onChange={(e) => setGithubUrl(e.target.value)}
                             style={{ padding: '10px', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', background: 'var(--bg-color)', color: 'var(--text-primary)', outline: 'none' }}
                           />
+                          <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', lineHeight: '1.5' }}>
+                            Public repositories work directly. Private repositories can work on your local machine if GitHub is already authenticated there, but usually fail in the deployed app. For private code, use <strong>Upload ZIP</strong>.
+                          </div>
                           <button
                             onClick={() => {
                               if (githubUrl.trim()) handleScanGithub(githubUrl.trim());
