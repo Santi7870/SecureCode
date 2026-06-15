@@ -1,13 +1,14 @@
 import React from 'react';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Linkedin } from 'lucide-react';
 
 interface HeaderProps {
   showBack?: boolean;
   onBack?: () => void;
   isLanding?: boolean;
+  isNavigating?: boolean;
 }
 
-export const Header: React.FC<HeaderProps> = ({ showBack, onBack, isLanding }) => {
+export const Header: React.FC<HeaderProps> = ({ showBack, onBack, isLanding, isNavigating }) => {
   return (
     <header className={`header ${isLanding ? 'dark-header' : ''}`}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -15,6 +16,7 @@ export const Header: React.FC<HeaderProps> = ({ showBack, onBack, isLanding }) =
           <button 
             onClick={onBack}
             className="btn-secondary"
+            disabled={isNavigating}
             style={{ 
               padding: '6px 10px', 
               borderRadius: '8px', 
@@ -55,6 +57,16 @@ export const Header: React.FC<HeaderProps> = ({ showBack, onBack, isLanding }) =
         <span className="header-badge primary">Reasoning Agents Track</span>
         <span className="header-badge">Foundry IQ-inspired grounding</span>
         <span className="header-badge">v2.0.0</span>
+        <a
+          href="https://www.linkedin.com/in/santiago-panchi/"
+          target="_blank"
+          rel="noreferrer"
+          className="header-badge header-linkedin header-linkedin-cta"
+          aria-label="Open Santiago Panchi LinkedIn profile"
+        >
+          <Linkedin size={13} />
+          <span>Contact Me</span>
+        </a>
       </div>
     </header>
   );

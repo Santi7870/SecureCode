@@ -28,6 +28,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 export const App: React.FC = () => {
   // Routing View state
   const [view, setView] = useState<'landing' | 'platform'>('landing');
+  const [isNavigating, setIsNavigating] = useState(false);
 
   // Scanner Core states
   const [scans, setScans] = useState<ScanSummary[]>([]);
@@ -231,14 +232,33 @@ export const App: React.FC = () => {
     await runScanWorkflow(scanPromise);
   };
 
+  const handleLaunchPlatform = () => {
+    if (isNavigating) return;
+    setIsNavigating(true);
+    setView('platform');
+  };
+
+  const handleBackToLanding = () => {
+    if (isNavigating) return;
+    setIsNavigating(true);
+    setView('landing');
+  };
+
+  useEffect(() => {
+    if (!isNavigating) return;
+    const timer = window.setTimeout(() => setIsNavigating(false), 260);
+    return () => window.clearTimeout(timer);
+  }, [isNavigating]);
+
 
   return (
     <div className="app-container">
       {/* Sticky Glassmorphic Header */}
       <Header 
         showBack={view === 'platform'} 
-        onBack={() => setView('landing')} 
+        onBack={handleBackToLanding}
         isLanding={view === 'landing'}
+        isNavigating={isNavigating}
       />
 
       {/* Router Content Transitions */}
@@ -248,18 +268,18 @@ export const App: React.FC = () => {
             key="landing-view"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4, ease: 'easeInOut' }}
+            exit={{ opacity: 0, y: -8, scale: 0.998 }}
+            transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
           >
-            <LandingPage onLaunch={() => setView('platform')} />
+            <LandingPage onLaunch={handleLaunchPlatform} />
           </motion.div>
         ) : (
           <motion.div
             key="platform-view"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 8, scale: 0.998 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4, ease: 'easeInOut' }}
+            exit={{ opacity: 0, y: 6, scale: 0.999 }}
+            transition={{ duration: 0.18, ease: [0.4, 0, 0.2, 1] }}
             style={{ width: '100%' }}
           >
             {/* ================================================= */}

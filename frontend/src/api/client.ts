@@ -21,6 +21,12 @@ export const apiClient = {
     return res.json();
   },
 
+  async getHtmlReport(scanId: string): Promise<string> {
+    const res = await fetch(`${API_BASE_URL}/api/reports/${scanId}/html`);
+    if (!res.ok) throw new Error(`Failed to fetch HTML report for ID: ${scanId}`);
+    return res.text();
+  },
+
   async scanCode(code: string, filename: string, language: string): Promise<ScanResponse> {
     const res = await fetch(`${API_BASE_URL}/api/scan/code`, {
       method: 'POST',

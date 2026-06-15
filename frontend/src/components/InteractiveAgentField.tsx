@@ -159,7 +159,7 @@ export const InteractiveAgentField: React.FC<InteractiveAgentFieldProps> = ({ is
         {/* LAYER 2: Agent Network & Connections (Fades out on transition) */}
         {/* ================================================= */}
         <motion.g
-          animate={isTransitioning ? { opacity: 0, scale: 0.75, transition: { duration: 0.5, ease: "easeIn" } } : {}}
+          animate={isTransitioning ? { opacity: 0, scale: 0.96, transition: { duration: 0.18, ease: [0.4, 0, 0.2, 1] } } : {}}
           style={{ transformOrigin: `${centerX}px ${centerY}px` }}
         >
           {/* Knowledge feeds links (Dashed lines connecting bottom sources to hub) */}
@@ -307,9 +307,9 @@ export const InteractiveAgentField: React.FC<InteractiveAgentFieldProps> = ({ is
         {/* ================================================= */}
         <motion.g
           animate={isTransitioning ? {
-            scale: 12,
-            opacity: [1, 0.9, 0],
-            transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] }
+            scale: 1.08,
+            opacity: [1, 0.92, 0],
+            transition: { duration: 0.22, ease: [0.4, 0, 0.2, 1] }
           } : {}}
           style={{ transformOrigin: `${centerX}px ${centerY}px` }}
         >
@@ -397,7 +397,7 @@ export const InteractiveAgentField: React.FC<InteractiveAgentFieldProps> = ({ is
       
       {/* Card 1: Security Score */}
       <motion.div 
-        animate={isTransitioning ? { opacity: 0, y: -40, scale: 0.9, transition: { duration: 0.5 } } : {}}
+        animate={isTransitioning ? { opacity: 0, y: -12, scale: 0.98, transition: { duration: 0.16, ease: [0.4, 0, 0.2, 1] } } : {}}
         className="floating-preview-card score-preview float-card-1" 
         style={{ pointerEvents: 'auto' }}
       >
@@ -417,7 +417,7 @@ export const InteractiveAgentField: React.FC<InteractiveAgentFieldProps> = ({ is
 
       {/* Card 2: Active Agents */}
       <motion.div 
-        animate={isTransitioning ? { opacity: 0, y: -40, scale: 0.9, transition: { duration: 0.5 } } : {}}
+        animate={isTransitioning ? { opacity: 0, y: -12, scale: 0.98, transition: { duration: 0.16, ease: [0.4, 0, 0.2, 1] } } : {}}
         className="floating-preview-card agent-preview float-card-2" 
         style={{ pointerEvents: 'auto' }}
       >
@@ -435,7 +435,7 @@ export const InteractiveAgentField: React.FC<InteractiveAgentFieldProps> = ({ is
 
       {/* Card 3: Grounding Context */}
       <motion.div 
-        animate={isTransitioning ? { opacity: 0, y: 40, scale: 0.9, transition: { duration: 0.5 } } : {}}
+        animate={isTransitioning ? { opacity: 0, y: 12, scale: 0.98, transition: { duration: 0.16, ease: [0.4, 0, 0.2, 1] } } : {}}
         className="floating-preview-card float-card-3" 
         style={{ right: '20px', bottom: '40px', width: '220px', pointerEvents: 'auto' }}
       >
@@ -449,7 +449,7 @@ export const InteractiveAgentField: React.FC<InteractiveAgentFieldProps> = ({ is
 
       {/* Card 4: Validation Ready */}
       <motion.div 
-        animate={isTransitioning ? { opacity: 0, y: 40, scale: 0.9, transition: { duration: 0.5 } } : {}}
+        animate={isTransitioning ? { opacity: 0, y: 12, scale: 0.98, transition: { duration: 0.16, ease: [0.4, 0, 0.2, 1] } } : {}}
         className="floating-preview-card vulnerability-preview float-card-1" 
         style={{ pointerEvents: 'auto' }}
       >

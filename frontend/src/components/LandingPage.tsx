@@ -16,10 +16,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   const handleLaunch = () => {
+    if (isTransitioning) return;
     setIsTransitioning(true);
     setTimeout(() => {
       onLaunch();
-    }, 1100);
+    }, 220);
   };
 
   useEffect(() => {
@@ -73,8 +74,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
         <div className="hero-content">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={isTransitioning ? { opacity: 0, y: -70, filter: 'blur(8px)', transition: { duration: 0.6, ease: 'easeIn' } } : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
+            animate={isTransitioning ? { opacity: 0, y: -18, scale: 0.985, transition: { duration: 0.18, ease: [0.4, 0, 0.2, 1] } } : { opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           >
             <h1 className="hero-headline" style={{ background: 'linear-gradient(135deg, #FFFFFF 30%, #C7D2FE 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', lineHeight: 1.1 }}>
               SecureCode <br />
@@ -93,7 +94,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
             </div>
 
             <div className="hero-ctas">
-              <button className="btn-primary" onClick={handleLaunch} style={{ padding: '14px 28px', fontSize: '0.95rem' }}>
+              <button className="btn-primary launch-btn" onClick={handleLaunch} disabled={isTransitioning} style={{ padding: '14px 28px', fontSize: '0.95rem' }}>
                 <span>Launch Platform</span>
                 <ArrowRight size={16} />
               </button>
@@ -108,8 +109,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
         {/* Large Centered Interactive Canvas visualizer */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
+          animate={isTransitioning ? { opacity: 0, y: 12, scale: 0.992 } : { opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: isTransitioning ? 0.18 : 0.8, delay: isTransitioning ? 0 : 0.12, ease: [0.16, 1, 0.3, 1] }}
           style={{ width: '100%', maxWidth: '1000px', margin: '0 auto', position: 'relative' }}
         >
           <InteractiveAgentField isTransitioning={isTransitioning} />
@@ -458,7 +459,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
           <p style={{ fontSize: '1.05rem', color: '#9CA3AF', maxWidth: '600px', margin: '0 auto 2.5rem auto', lineHeight: '1.6' }}>
             Deploy the SecureCode multi-agent reasoning scanner locally on your laptop and discover vulnerabilities with parameterized tests and patch generations.
           </p>
-          <button className="btn-primary" onClick={handleLaunch} style={{ padding: '14px 32px', fontSize: '0.95rem' }}>
+          <button className="btn-primary launch-btn" onClick={handleLaunch} disabled={isTransitioning} style={{ padding: '14px 32px', fontSize: '0.95rem' }}>
             <span>Launch Platform</span>
             <ArrowRight size={16} />
           </button>
