@@ -219,8 +219,25 @@ export const RepositoryMap: React.FC<RepositoryMapProps> = ({
         Automatically discovered software model for `{repoName}`. Glowing nodes highlight active security risks. Click any node to open its interactive findings bubble.
       </p>
 
-      <div style={{ position: 'relative', width: '100%', height: '380px', overflowX: 'auto', background: 'rgba(3, 7, 18, 0.4)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}>
-        <svg width="820" height="360" style={{ display: 'block', overflow: 'visible', margin: '0 auto' }}>
+      <div
+        className="repository-map-viewport"
+        style={{
+          position: 'relative',
+          width: '100%',
+          height: '380px',
+          overflowX: 'auto',
+          overflowY: 'hidden',
+          background: 'rgba(3, 7, 18, 0.4)',
+          borderRadius: 'var(--radius-md)',
+          border: '1px solid var(--border-color)'
+        }}
+      >
+        <svg
+          className="repository-map-canvas"
+          width="820"
+          height="360"
+          style={{ display: 'block', overflow: 'visible' }}
+        >
           <defs>
             <linearGradient id="mapConnectionGrad" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="var(--primary)" stopOpacity="0.4" />

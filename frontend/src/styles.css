@@ -57,11 +57,13 @@
 }
 
 html {
-  height: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
   scroll-behavior: smooth;
 }
 
-/* Custom Elegant Super-Thin Scrollbar */
+/* Custom Elegant Super-Thin Page Scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
@@ -85,6 +87,7 @@ html {
 body {
   min-height: 100%;
   overflow-x: hidden;
+  overflow-y: visible;
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.12) #030712;
@@ -94,6 +97,26 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Keep the browser/page scrollbar as the only visible vertical scrollbar.
+   Nested panels and textareas remain scrollable, but their chrome stays hidden. */
+body * {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body *::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  display: block;
 }
 
 /* Header Styles */
@@ -108,6 +131,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
+  min-width: 0;
   border-bottom: 1px solid var(--border-color);
   max-width: 100%;
 }
@@ -117,11 +142,13 @@ body {
   align-items: center;
   gap: 0.75rem;
   text-decoration: none;
+  min-width: 0;
 }
 
 .header-logo h1 {
   font-size: 1.15rem;
   font-weight: 800;
+  line-height: 1.1;
   letter-spacing: -0.03em;
   background: var(--accent-gradient);
   -webkit-background-clip: text;
@@ -132,6 +159,9 @@ body {
   display: flex;
   gap: 8px;
   align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+  flex-wrap: wrap;
 }
 
 .header-badge {
@@ -143,6 +173,7 @@ body {
   font-size: 0.75rem;
   font-weight: 600;
   box-shadow: var(--shadow-sm);
+  white-space: nowrap;
 }
 
 .header-linkedin {
@@ -187,6 +218,9 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 100%;
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 /* Hero Section */
@@ -426,16 +460,19 @@ body {
 
 /* Interactive Workspace Split Layout */
 .workspace-container {
-  padding: 4rem 2rem;
+  padding: 2.75rem clamp(1rem, 2vw, 2rem) 4rem;
   background-color: var(--surface-color);
   border-top: 1px solid var(--border-color);
   width: 100%;
+  min-width: 0;
+  overflow: visible;
 }
 
 .workspace-inner {
-  max-width: 1400px;
+  max-width: min(1760px, calc(100vw - clamp(2rem, 4vw, 4rem)));
   margin: 0 auto;
   width: 100%;
+  min-width: 0;
 }
 
 .workspace-title-section {
@@ -444,8 +481,9 @@ body {
 }
 
 .workspace-title {
-  font-size: 2rem;
+  font-size: clamp(1.65rem, 1.25vw + 1rem, 2rem);
   font-weight: 800;
+  line-height: 1.12;
   letter-spacing: -0.03em;
 }
 
@@ -460,12 +498,13 @@ body {
   grid-template-columns: 1fr;
   gap: 3rem;
   align-items: start;
+  min-width: 0;
   transition: grid-template-columns 0.35s cubic-bezier(0.16, 1, 0.3, 1), gap 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @media(min-width: 1024px) {
   .workspace-grid {
-    grid-template-columns: 420px 1fr;
+    grid-template-columns: minmax(340px, 420px) minmax(0, 1fr);
   }
   
   .workspace-grid.sidebar-collapsed {
@@ -479,6 +518,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  min-width: 0;
   transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
   opacity: 1;
   transform: translateX(0);
@@ -504,6 +544,7 @@ body {
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
+  min-width: 0;
 }
 
 .saas-card:hover {
@@ -537,6 +578,8 @@ body {
   border-bottom: 1px solid var(--border-color);
   margin-bottom: 1.5rem;
   gap: 4px;
+  min-width: 0;
+  overflow-x: auto;
 }
 
 .tab-btn {
@@ -549,6 +592,8 @@ body {
   font-size: 0.85rem;
   color: var(--text-secondary);
   transition: all 0.2s ease;
+  white-space: nowrap;
+  flex: 0 0 auto;
 }
 
 .tab-btn:hover {
@@ -720,6 +765,42 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  min-width: 0;
+  overflow: visible;
+}
+
+.workspace-grid > *,
+.results-area > *,
+.score-section > * {
+  min-width: 0;
+}
+
+.repository-map-viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(129, 140, 248, 0.45) rgba(255, 255, 255, 0.06) !important;
+}
+
+.repository-map-viewport::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  display: block;
+}
+
+.repository-map-viewport::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 9999px;
+}
+
+.repository-map-viewport::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.72) 0%, rgba(167, 139, 250, 0.72) 100%);
+  border-radius: 9999px;
+}
+
+.repository-map-canvas {
+  min-width: 820px;
+  margin: 0;
 }
 
 /* Score Circle Circular Gauge */
