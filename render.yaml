@@ -15,20 +15,16 @@ services:
       - key: FRONTEND_ORIGIN
         sync: false
       - key: DATABASE_URL
-        value: sqlite:////var/data/sqlite.db
+        value: sqlite:///./sqlite.db
       - key: APP_STORAGE_PATH
-        value: /var/data
+        value: .
       - key: REPORTS_DIR
-        value: /var/data/reports
+        value: ./reports
       - key: TEMP_REPOS_DIR
-        value: /var/data/temp_repos
+        value: ./temp_repos
       - key: TEMP_SCANS_DIR
-        value: /var/data/tmp_scans
+        value: ./tmp_scans
       - key: VECTOR_STORE_PATH
-        value: /var/data/data/vector_store.json
+        value: ./data/vector_store.json
       - key: AI_PROVIDER
         value: local
-    disks:
-      - name: securecode-disk
-        mountPath: /var/data
-        sizeGB: 1

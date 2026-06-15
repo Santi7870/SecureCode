@@ -188,6 +188,7 @@ npm run dev
 ### Production deployment
 - Render backend blueprint: `render.yaml`
 - Vercel SPA config: `frontend/vercel.json`
+- Render free mode uses ephemeral SQLite storage for demo deployments
 - Full guide: `docs/DEPLOYMENT.md`
 
 ### 4. Run the Streamlit Dashboard App (Optional)

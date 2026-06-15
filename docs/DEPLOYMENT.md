@@ -8,8 +8,8 @@ This guide details how to host the **SecureCode Reasoning Agent** web applicatio
 The repository now includes a ready-to-use `render.yaml` at the project root. For this MVP, the recommended setup is:
 
 - **Render Web Service** for the FastAPI backend
-- **Render Persistent Disk** mounted at `/var/data`
-- **SQLite stored on that disk**
+- **Render Free plan**
+- **SQLite stored in the service filesystem**
 
 ### Recommended path
 1. Push the repository to GitHub.
@@ -21,13 +21,13 @@ The repository now includes a ready-to-use `render.yaml` at the project root. Fo
 - Build command: `pip install -r backend/requirements.txt`
 - Start command: `uvicorn backend.main:app --host 0.0.0.0 --port $PORT`
 - Health check path: `/health`
-- Persistent disk mount: `/var/data`
-- SQLite database path: `sqlite:////var/data/sqlite.db`
-- Persistent directories for:
+- SQLite database path: `sqlite:///./sqlite.db`
+- App-local directories for:
   - reports
   - temporary uploaded scans
   - temporary repository extraction
   - vector cache store
+- No persistent disk required
 
 ### Manual setup alternative
 If you do not want to use Blueprint, you can still create the service manually:
@@ -37,19 +37,18 @@ If you do not want to use Blueprint, you can still create the service manually:
 3. Configure:
    - Build Command: `pip install -r backend/requirements.txt`
    - Start Command: `uvicorn backend.main:app --host 0.0.0.0 --port $PORT`
-4. Add a Persistent Disk mounted at `/var/data`.
-5. Configure these environment variables:
+4. Configure these environment variables:
    - `PYTHONPATH=.`
    - `ENVIRONMENT=production`
    - `FRONTEND_ORIGIN=https://your-frontend-vercel.vercel.app`
-   - `DATABASE_URL=sqlite:////var/data/sqlite.db`
-   - `APP_STORAGE_PATH=/var/data`
-   - `REPORTS_DIR=/var/data/reports`
-   - `TEMP_REPOS_DIR=/var/data/temp_repos`
-   - `TEMP_SCANS_DIR=/var/data/tmp_scans`
-   - `VECTOR_STORE_PATH=/var/data/data/vector_store.json`
+   - `DATABASE_URL=sqlite:///./sqlite.db`
+   - `APP_STORAGE_PATH=.`
+   - `REPORTS_DIR=./reports`
+   - `TEMP_REPOS_DIR=./temp_repos`
+   - `TEMP_SCANS_DIR=./tmp_scans`
+   - `VECTOR_STORE_PATH=./data/vector_store.json`
    - `AI_PROVIDER=local`
-6. Optional AI variables if you want cloud enrichment:
+5. Optional AI variables if you want cloud enrichment:
    - `AZURE_OPENAI_ENDPOINT`
    - `AZURE_OPENAI_API_KEY`
    - `AZURE_OPENAI_DEPLOYMENT`
@@ -59,7 +58,9 @@ If you do not want to use Blueprint, you can still create the service manually:
    - `OPENAI_COMPATIBLE_MODEL`
 
 ### Notes
-- The backend stores scan history in SQLite and stores generated reports on disk, so **the persistent disk is required**.
+- Render Free does **not** support persistent disks for web services.
+- This setup works for a demo, but SQLite and generated files are **ephemeral** and can be lost after restart/redeploy.
+- The app now reconstructs reports from database data when generated files are missing.
 - The repository includes `backend/Dockerfile`, but for this MVP the **Python runtime is simpler and recommended**.
 
 ---
