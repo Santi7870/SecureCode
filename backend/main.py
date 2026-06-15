@@ -45,10 +45,17 @@ class RequestIdMiddleware(BaseHTTPMiddleware):
 
 app.add_middleware(RequestIdMiddleware)
 
+allowed_origins = [
+    origin.strip()
+    for origin in [settings.FRONTEND_ORIGIN, "http://localhost:5173"]
+    if origin and origin.strip()
+]
+
 # Enable CORS configurations
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.FRONTEND_ORIGIN, "http://localhost:5173"],
+    allow_origins=allowed_origins,
+    allow_origin_regex=settings.FRONTEND_ORIGIN_REGEX,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]

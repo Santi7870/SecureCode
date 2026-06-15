@@ -14,6 +14,7 @@ class Settings(BaseModel):
     
     # CORS Origin
     FRONTEND_ORIGIN: str = os.getenv("FRONTEND_ORIGIN", "http://localhost:5173")
+    FRONTEND_ORIGIN_REGEX: str = os.getenv("FRONTEND_ORIGIN_REGEX", r"https://.*\.vercel\.app")
     
     # Database
     DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./sqlite.db")
